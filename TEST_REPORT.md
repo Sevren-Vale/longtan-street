@@ -5,10 +5,13 @@
 | 实际运行 | 验证内容 |
 | --- | --- |
 | `pnpm install --frozen-lockfile` | 锁定依赖可复现安装 |
+| `pnpm dev` | 本地启动，HTTP 响应为 200，返回中文标题 |
 | `pnpm test` | 6 项通过，覆盖三种配方的扣料与收款、防重复收款、早捞和过火、限时超时、升级门槛、存档校验、坐标及碰撞 |
 | `pnpm run build` | 通过 TypeScript 检查及 Vite 静态构建，JS 和 CSS 压缩后分别约 26.8 和 4.8 kB |
 | `PLAYWRIGHT_EDGE=1` 下运行 `pnpm run test:e2e` | 桌面、手机两个场景均通过，使用仓库子路径下的生产构建 |
 | `pnpm audit` | 更新 Vitest 后，审计报告无已知漏洞 |
+| Edge 持久化浏览器会话 | 创建角色并开始烹饪。关闭整个浏览器会话、以同一配置重新打开后，角色、土豆库存和削皮步骤均正确恢复。另已在地图点击其余四家摊位，确认各自显示开业条件 |
+| [GitHub Actions 云端构建及部署](https://github.com/Sevren-Vale/longtan-street/actions/runs/43811133673) | 安装、6 项单元测试、构建、部署与线上资源检查均通过。运行器实际请求了公开首页、JavaScript、样式和标题插画 |
 
 ## 浏览器断言
 
@@ -20,4 +23,6 @@
 
 ## 验证范围
 
-移动浏览器结果来自 Edge 触控模拟。实体手机、Safari 浏览器与多设备长时间试玩仍待独立审查。公开站点验证待 Pages 工作流完成。
+移动浏览器结果来自 Edge 触控模拟。实体手机、Safari 浏览器与多设备长时间试玩仍待独立审查。当前 Windows 环境直连 `github.io` 超时，公开站点的 HTTP 验证由 GitHub 托管运行器完成。
+
+初次 Actions 运行在 pnpm 尚未安装时触发了 Node 设置步骤的包管理器缓存。关闭自动缓存并顺序安装后，重新运行通过。 [首次运行](https://github.com/Sevren-Vale/longtan-street/actions/runs/43809808712)

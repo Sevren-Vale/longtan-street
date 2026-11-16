@@ -598,16 +598,16 @@ Skill 可以安装，但必须先检查来源、许可证、安装脚本、安�
 ## 23. 最新交接状态
 
 - 开发者与日期：Codex，2026-11-16。
-- 当前阶段：《龙潭商业街》首发版本 1.0.0，完成可运营炸香摊的本地构建，进入公开部署与独立审查交接。
+- 当前阶段：《龙潭商业街》首发版本 1.0.0 已发布，进入独立审查交接。
 - 接手时只有原始 `HANDOFF.md`，无源码、素材和 Git 仓库。已创建 `main`，并以 `91e3cb0` 保存原始交接历史。本文件前文记载的玩法与后续方向继续作为设计参考，首发实现以本节及 README 为准。
 - 首发实现：简体中文标题、角色捏脸与剧情、原创可探索地图、NPC、遮挡与碰撞、鼠标与键盘和触控。炸香摊提供完整的三道菜流程、选做的限时挑战、随机订单、库存采购、质量评价、设备升级、经验、人气、每日任务及跨日结算。其余四摊有现场外观、条件和菜单预告。
 - 存档：`saveVersion: 1`、`contentVersion: 1.0.0`，保存角色与坐标、经济、配方与锁定状态、当天经营和正在制作的订单。设置可导入、导出及确认清空。将来更改步骤模型时必须迁移活跃制作状态。跨设备可通过手动导入导出转移。
 - 工程决定：采用 TypeScript、Vite、原生 Canvas 2D 和 HTML/CSS。单张有限地图和固定 NPC 路线用数据定义，V1 未引入 Phaser、Tiled 和动态寻路库。标题为工具生成的原创插画，地图、人物、食材动画为程序绘制的像素资产，音效由 Web Audio 合成。
 - 修改文件：`src/content.ts` 和 `src/world.ts` 管理内容数据，`src/business.ts` 和 `src/save.ts` 管理经营存档，`src/main.ts`、`src/ui.ts`、`src/style.css`、`src/street.ts` 和各美术模块实现玩家界面与绘制。新增 `index.html`、`public/longtan-title.png`、工程配置、测试、Pages 工作流、`README.md`、`CREDITS.md` 和 `TEST_REPORT.md`。
-- 实际测试见 [TEST_REPORT.md](TEST_REPORT.md)。浏览器端在 Edge 桌面及 Pixel 7 模拟视口加载仓库子路径下的生产构建。
-- 现有限制：其余四摊在 V1 仅预告，长线解锁数值与时长待试玩。地图为对当地地标的游戏化布局，尚无实地路线校准。未做实体 iPhone、Android 真机测试。暂未开放自由烹饪、完整节庆剧情和云同步。
-- Git 提交：原始交接 `91e3cb0`。首发开发提交见 `git log --oneline main`。
-- 部署：已创建 [公开 GitHub 仓库](https://github.com/Sevren-Vale/longtan-street)，Pages 工作流在 `.github/workflows/pages.yml`，发布验证进行中。
+- 实际测试：6 项单元测试及 2 条 Playwright 桌面与移动端场景通过。补测了关闭浏览器后恢复制作进度，并逐一打开四家筹备摊的条件预览。详见 [TEST_REPORT.md](TEST_REPORT.md)。
+- 现有限制：其余四摊在 V1 仅预告，长线解锁数值与时长待试玩。地图为对当地地标的游戏化布局，尚无实地路线校准。未做实体 iPhone、Android 真机测试。暂未开放自由烹饪、完整节庆剧情和云同步。当前 Windows 环境直连 Pages 域名超时，托管运行器线上资源验证通过。
+- Git 提交：原始交接 `91e3cb0`、首发源码 `ad38b7e`、工作流修复 `d798f2f`、线上资源校验及实际部署 `6acf80d`。其后的交接与测试记录只更新文档。
+- 部署：公开仓库的 `main` 使用 `.github/workflows/pages.yml` 自动构建和发布。GitHub 托管运行器确认公开首页、脚本、样式和标题插画可请求。 [公开 GitHub 仓库](https://github.com/Sevren-Vale/longtan-street) · [在线游戏](https://sevren-vale.github.io/longtan-street/) · [成功发布记录](https://github.com/Sevren-Vale/longtan-street/actions/runs/43811133673)
 - 下一位开发者：DeepSeek Harness。独立审查任务见下一节。DeepSeek 审查结束后，由 Codex 复现问题、修复和复测。
 
 ### 首发开发前的 GitHub 与授权核查（2026-11-16）

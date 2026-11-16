@@ -2,6 +2,8 @@
 
 《龙潭商业街》是一款以湖南桂阳县为背景的像素风网页经营游戏。作为桂阳一中的毕业生，你回到街坊熟悉的龙潭街，经营一间炸物摊。
 
+[在线游玩](https://sevren-vale.github.io/longtan-street/) · [项目源码](https://github.com/Sevren-Vale/longtan-street)
+
 ## 开始经营
 
 - 在地图上点红棚的「龙潭炸香摊」，或用方向键移动到摊前按 E。手机可以用虚拟摇杆移动，再点击互动按钮。
@@ -39,7 +41,7 @@ pnpm run test:e2e
 
 ## 部署
 
-仓库 Settings → Pages 的来源设为 GitHub Actions。推送 `main` 上的源码后，`.github/workflows/pages.yml` 会安装锁定的依赖、运行单元测试、构建并发布静态产物。也可以在 Actions 手动运行。Vite 使用相对资源路径，适用于仓库子目录。直接用文件管理器打开 `dist/index.html` 时，浏览器可能拦截模块脚本，请通过 HTTP 预览。
+仓库 Settings → Pages 的来源设为 GitHub Actions。推送 `main` 上的源码后，`.github/workflows/pages.yml` 会安装锁定的依赖、运行单元测试、构建并发布静态产物，随后请求线上首页和游戏资源。也可以在 Actions 手动运行。Vite 使用相对资源路径，适用于仓库子目录。直接用文件管理器打开 `dist/index.html` 时，浏览器可能拦截模块脚本，请通过 HTTP 预览。
 
 ## 内容维护
 
