@@ -43,3 +43,21 @@ jobs:
       - name: 发布到 GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v4
+      - name: 验证公开站点资源
+        env:
+          PAGES_URL: ${{ steps.deploy.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          base="${PAGES_URL%/}/"
+          index="$RUNNER_TEMP/longtan-pages.html"
+          curl_args=(--fail --silent --show-error --location --connect-timeout 8 --max-time 20 --retry 6 --retry-all-errors --retry-delay 6)
+          curl "${curl_args[@]}" "$base" --output "$index"
+          grep -F '<title>龙潭商业街</title>' "$index"
+          script="$(sed -nE 's/.*src="\.\/(assets\/[^"]+\.js)".*/\1/p' "$index")"
+          style="$(sed -nE 's/.*href="\.\/(assets\/[^"]+\.css)".*/\1/p' "$index")"
+          test -n "$script"
+          test -n "$style"
+          for asset in "$script" "$style" longtan-title.png; do
+            curl "${curl_args[@]}" "$base$asset" --output /dev/null
+            echo "Verified $asset"
+          done
