@@ -1,4 +1,4 @@
-﻿# 厨房小游戏｜最新项目交接文件
+# 厨房小游戏｜最新项目交接文件
 
 > 本文件是项目唯一的最新交接入口。每一轮开发结束后，完整更新并覆盖本文件，不创建 `HANDOFF-v2`、`最终版` 等平行版本。历史由 Git commit 保存。
 
@@ -9,7 +9,7 @@
 - 本地项目目录：`D:\Projects\AIProjects\厨房小游戏`
 - 最终平台：浏览器网页游戏，部署到 GitHub Pages
 - 主要受众：用户的女朋友；以轻松、有趣、精致、温馨、可反复游玩为目标
-- 当前阶段：前期设计阶段，尚未开始主体开发
+- 当前阶段：首发 1.0.0，进度见第 23 节
 - 最终目标：完成一款用户满意、完整可玩、电脑和手机均适配、可直接部署到 GitHub Pages 的网页游戏
 
 ## 1. 团队分工
@@ -597,29 +597,40 @@ Skill 可以安装，但必须先检查来源、许可证、安装脚本、安�
 
 ## 23. 最新交接状态
 
-- 当前阶段：前期设计与地图系统规划，尚未开始主体开发。
-- 已确认：用户负责设计；ChatGPT 负责协调、研究、任务拆解与交付；Codex 和 DeepSeek Harness 轮替开发。
-- 已确认：项目目录 `D:\Projects\AIProjects\厨房小游戏`；最终部署 GitHub Pages。
-- 已确认：游戏暂定名《龙潭商业街》；主角为桂阳一中毕业生，回到龙潭商业街创业。
-- 已确认：地图采用真实地图基础上的游戏化扩建；精确道路和方位仍待用户地图截图校准。
-- 已确认：可爱精致像素风；食材必须高辨识度。
-- 已确认：游戏全部采用中国审美、中国元素，不需要西方元素；所有玩家可见文字使用简体中文。
-- 已确认：多玩法融合；休闲经营与限时挑战自由切换。
-- 已确认：俯视主地图 + 近景烹饪；支持电脑和手机。
-- 已确认：主角男女可选并自定义外观。
-- 本轮新增确认：主角控制方式选择 C——自由移动 + 快捷经营。
-- 本轮新增确认：游戏不是只有五家商铺；五家只是暂定首批内容，用户会让女朋友一边玩一边持续更新；项目不以五家店或某个强制最终结局完结。
-- 已确认：摊位逐个解锁；首批五家成熟后进入店铺升级和扩建阶段，但后续仍可新增摊位和街区。
-- 已设计：第一家龙潭炸香摊；第二家龙潭鲜果茶摊；第三家龙潭铁板炒饭；第四家龙潭·栖凤渡鱼粉摊；第五家龙潭中式早点铺。
-- 已确认：每家摊位游玩时长需要拉长，下一家解锁必须有一定难度；设计目标单家约2–3小时有效成长体验，前五家主线约10–15小时，需实际测试校准。
-- 本轮新增地图设计：连续主世界、主街步行轴、中央休息广场、后勤补货支巷、校园外沿、临街店铺预留区、夜市扩展区、未来街区扩建口。
-- 本轮新增地图交互：PC WASD/方向键 + E；手机虚拟摇杆 + 互动按钮；点击摊位和建筑快捷打开经营界面。
-- 本轮新增技术研究：建议 Phaser + Tiled；PathFinding.js 仅在需要动态 A* 寻路时考虑；官方示例素材不可默认复用。
-- 本轮新增长期更新要求：稳定实体 ID、saveVersion/contentVersion、旧存档迁移、存档导入导出说明；无强制最终结局。
-- 下一步建议：继续完善角色创建与服装系统、任务/剧情系统和完整 UI 结构；随后形成完整游戏设计总纲，再由 Codex 开始项目初始化和地图垂直切片原型。
-- 下一位开发者：暂不启动主体开发；等用户确认核心设计并由 ChatGPT 发出明确首轮任务后，Codex 开始 GitHub 调研、项目初始化和可玩地图原型。
+- 开发者与日期：Codex，2026-11-16。
+- 当前阶段：《龙潭商业街》首发版本 1.0.0，完成可运营炸香摊的本地构建，进入公开部署与独立审查交接。
+- 接手时只有原始 `HANDOFF.md`，无源码、素材和 Git 仓库。已创建 `main`，并以 `91e3cb0` 保存原始交接历史。本文件前文记载的玩法与后续方向继续作为设计参考，首发实现以本节及 README 为准。
+- 首发实现：简体中文标题、角色捏脸与剧情、原创可探索地图、NPC、遮挡与碰撞、鼠标与键盘和触控。炸香摊提供完整的三道菜流程、选做的限时挑战、随机订单、库存采购、质量评价、设备升级、经验、人气、每日任务及跨日结算。其余四摊有现场外观、条件和菜单预告。
+- 存档：`saveVersion: 1`、`contentVersion: 1.0.0`，保存角色与坐标、经济、配方与锁定状态、当天经营和正在制作的订单。设置可导入、导出及确认清空。将来更改步骤模型时必须迁移活跃制作状态。跨设备可通过手动导入导出转移。
+- 工程决定：采用 TypeScript、Vite、原生 Canvas 2D 和 HTML/CSS。单张有限地图和固定 NPC 路线用数据定义，V1 未引入 Phaser、Tiled 和动态寻路库。标题为工具生成的原创插画，地图、人物、食材动画为程序绘制的像素资产，音效由 Web Audio 合成。
+- 修改文件：`src/content.ts` 和 `src/world.ts` 管理内容数据，`src/business.ts` 和 `src/save.ts` 管理经营存档，`src/main.ts`、`src/ui.ts`、`src/style.css`、`src/street.ts` 和各美术模块实现玩家界面与绘制。新增 `index.html`、`public/longtan-title.png`、工程配置、测试、Pages 工作流、`README.md`、`CREDITS.md` 和 `TEST_REPORT.md`。
+- 实际测试见 [TEST_REPORT.md](TEST_REPORT.md)。浏览器端在 Edge 桌面及 Pixel 7 模拟视口加载仓库子路径下的生产构建。
+- 现有限制：其余四摊在 V1 仅预告，长线解锁数值与时长待试玩。地图为对当地地标的游戏化布局，尚无实地路线校准。未做实体 iPhone、Android 真机测试。暂未开放自由烹饪、完整节庆剧情和云同步。
+- Git 提交：原始交接 `91e3cb0`。首发开发提交见 `git log --oneline main`。
+- 部署：已创建 [公开 GitHub 仓库](https://github.com/Sevren-Vale/longtan-street)，Pages 工作流在 `.github/workflows/pages.yml`，发布验证进行中。
+- 下一位开发者：DeepSeek Harness。独立审查任务见下一节。DeepSeek 审查结束后，由 Codex 复现问题、修复和复测。
 
-## 24. 每轮交接更新模板
+### 首发开发前的 GitHub 与授权核查（2026-11-16）
+
+- [Phaser](https://github.com/phaserjs/phaser/blob/master/LICENSE.md) 与 [官方 Vite/TypeScript 模板](https://github.com/phaserjs/template-vite-ts) 使用 MIT。可修改、商用与再分发，复用时须保留版权与许可说明。官方仍维护模板。研究了模板依赖与入口，地图规模较小，Canvas 已覆盖首发所需的渲染、碰撞和输入，未采用模板。
+- [Phaser 官方示例](https://github.com/phaserjs/examples#license) 明确区分 MIT 代码和单独授权的游戏素材。没有复制示例素材或代码。
+- [Tiled](https://github.com/mapeditor/tiled/blob/master/COPYING) 的编辑器及库文件分属不同许可，采用时须逐组件核查。对象层和碰撞分离的设计有参考价值，V1 用项目里的地图数据表达，不分发编辑器组件。
+- [PathFinding.js](https://github.com/qiao/PathFinding.js#license) 采用 MIT，允许修改和再分发，须保留版权声明。仓库展示了网格 A*，V1 的固定路线没有运行时寻路需求。
+- [Phaser-Cooking-Game](https://github.com/leons-sky/Phaser-Cooking-Game) 是已归档的 Phaser/enable3d 方案，[CookingGame](https://github.com/Lemontea010/CookingGame) 使用 Node.js、jQuery 和 Phaser。未确认可以复用其代码与资产，均未引入。
+- [Kenney Food Kit](https://kenney.nl/assets/food-kit) 采用 CC0，允许商用、修改和再分发。三维资产不适合本项目的中式俯视像素食材，采用原创绘制。图片、音效和字体情况见 [CREDITS.md](CREDITS.md)。
+- 工程查阅 [Vite 相对路径构建](https://vite.dev/guide/build.html#relative-base)、[GitHub Pages Actions](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) 和 [GitHub Pages API](https://docs.github.com/en/rest/pages/pages#create-a-github-pages-site)。
+
+## 24. DeepSeek Harness 独立审查任务
+
+审查《龙潭商业街》首发版。项目目录为 `D:\Projects\AIProjects\厨房小游戏`，从当前 `main` 开始。先查阅 README、交接状态和测试报告，再独立运行游戏。允许范围明确且必要的小修，保留现有 Canvas / TypeScript 架构、内容编号、已确认玩法与原有 Git 历史。将需要较大改动的问题留给 Codex。
+
+1. **代码质量与游戏循环。** 验证三个完整配方、火候早晚、等待、取消、缺料、重复点击、出餐和结算是否一致。核对金币、小费、库存、经验、人气、任务、设备与跨日状态的边界。
+2. **交互与 UI。** 核对简体中文，验证五家摊位、自由移动、碰撞、前后遮挡、地图点击、E 键、ESC 与对话框焦点。用手机竖横屏检查虚拟摇杆、按钮触控和烹饪火候条。
+3. **存档与安全。** 检查刷新和重新打开时的活跃订单恢复。测试导入导出、损坏 JSON、未知版本、清档确认、两个标签页和数据回滚。检查玩家名字的渲染、依赖漏洞及发布内容是否混入凭据。
+4. **性能与部署。** 检查画布渲染成本、资源体积和移动浏览器表现。实际运行 `pnpm install --frozen-lockfile`、`pnpm test`、`pnpm run build` 与 `pnpm run test:e2e`，核对 Pages 子目录资源请求和公开发布状态。
+5. **交付。** 在本文件追加审查结论并更新第 23 节。每项发现记录优先级、复现、影响、文件位置和建议。记录运行命令、结果、实际小修与提交号，注明无法验证的设备或场景。下一轮交给 Codex，集中处理剩余问题后重新验收。
+
+## 25. 每轮交接更新模板
 
 每轮更新时保留本文件的稳定规则，并更新本节状态：
 
